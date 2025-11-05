@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradientGen</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>GradientGen</h1>
+                <p class="subtitle">v1.0 | vector_field</p>
+            </div>
+            
+            <div class="sidebar-content">
+                <!-- Gradient Parameters -->
+                <section class="control-section">
+                    <h2 class="section-title">Parameters</h2>
+                    
+                    <div class="slider-group">
+                        <label for="movementMode">movement_mode</label>
+                        <select id="movementMode" class="dropdown-select">
+                            <option value="0">default</option>
+                            <option value="1">linear</option>
+                            <option value="2">vortex</option>
+                            <option value="3">resonance</option>
+                            <option value="4">perturbation</option>
+                            <option value="5">burst</option>
+                            <option value="6">flow</option>
+                            <option value="7">static</option>
+                        </select>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="scale">scale</label>
+                        <div class="slider-container">
+                            <input type="range" id="scale" min="1" max="20" step="0.5" value="6" class="slider">
+                            <span class="slider-value" id="scaleValue">6</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="phaseX">phase_x</label>
+                        <div class="slider-container">
+                            <input type="range" id="phaseX" min="0" max="2" step="0.01" value="0.1" class="slider">
+                            <span class="slider-value" id="phaseXValue">0.1</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="velocityY">velocity</label>
+                        <div class="slider-container">
+                            <input type="range" id="velocityY" min="0" max="5" step="0.1" value="0.2" class="slider">
+                            <span class="slider-value" id="velocityYValue">0.2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="mode1Detail">detail</label>
+                        <div class="slider-container">
+                            <input type="range" id="mode1Detail" min="10" max="1000" step="5" value="200" class="slider">
+                            <span class="slider-value" id="mode1DetailValue">200</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="mode1Twist">twist</label>
+                        <div class="slider-container">
+                            <input type="range" id="mode1Twist" min="0" max="100" step="1" value="0" class="slider">
+                            <span class="slider-value" id="mode1TwistValue">0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="mode2Speed">speed</label>
+                        <div class="slider-container">
+                            <input type="range" id="mode2Speed" min="0" max="10" step="0.1" value="2.5" class="slider">
+                            <span class="slider-value" id="mode2SpeedValue">2.5</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Gradient Colors -->
+                <section class="control-section">
+                    <h2 class="section-title">Gradient</h2>
+                    
+                    <div id="gradientColorsContainer">
+                        <!-- Les champs de couleur seront ajoutés dynamiquement -->
+                    </div>
+                </section>
+                
+                <!-- Color Settings -->
+                <section class="control-section">
+                    <h2 class="section-title">Color</h2>
+                    
+                    <div class="slider-group">
+                        <label for="hue">hue</label>
+                        <div class="slider-container">
+                            <input type="range" id="hue" min="0" max="360" value="33" class="slider">
+                            <span class="slider-value" id="hueValue">33°</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="saturation">saturation</label>
+                        <div class="slider-container">
+                            <input type="range" id="saturation" min="0" max="200" value="100" class="slider">
+                            <span class="slider-value" id="saturationValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="vibrance">vibrance</label>
+                        <div class="slider-container">
+                            <input type="range" id="vibrance" min="-100" max="100" value="0" class="slider">
+                            <span class="slider-value" id="vibranceValue">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="brightness">brightness</label>
+                        <div class="slider-container">
+                            <input type="range" id="brightness" min="0" max="200" value="100" class="slider">
+                            <span class="slider-value" id="brightnessValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="contrast">contrast</label>
+                        <div class="slider-container">
+                            <input type="range" id="contrast" min="0" max="200" value="100" class="slider">
+                            <span class="slider-value" id="contrastValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="rgbMultiplierR">rgb_mult_r</label>
+                        <div class="slider-container">
+                            <input type="range" id="rgbMultiplierR" min="0" max="200" value="100" class="slider">
+                            <span class="slider-value" id="rgbMultiplierRValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="rgbMultiplierG">rgb_mult_g</label>
+                        <div class="slider-container">
+                            <input type="range" id="rgbMultiplierG" min="0" max="200" value="100" class="slider">
+                            <span class="slider-value" id="rgbMultiplierGValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="rgbMultiplierB">rgb_mult_b</label>
+                        <div class="slider-container">
+                            <input type="range" id="rgbMultiplierB" min="0" max="200" value="100" class="slider">
+                            <span class="slider-value" id="rgbMultiplierBValue">100%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="colorOffset">color_offset</label>
+                        <div class="slider-container">
+                            <input type="range" id="colorOffset" min="-100" max="100" value="0" class="slider">
+                            <span class="slider-value" id="colorOffsetValue">0</span>
+                        </div>
+                    </div>
+                    
+                </section>
+                
+                <!-- Effects Settings -->
+                <section class="control-section">
+                    <h2 class="section-title">Effets</h2>
+                    
+                    <div class="slider-group">
+                        <label for="grainAmount">grain_amount</label>
+                        <div class="slider-container">
+                            <input type="range" id="grainAmount" min="0" max="200" value="0" class="slider">
+                            <span class="slider-value" id="grainAmountValue">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="grainSize">grain_size</label>
+                        <div class="slider-container">
+                            <input type="range" id="grainSize" min="1" max="100" value="20" class="slider">
+                            <span class="slider-value" id="grainSizeValue">2.0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="posterize">posterize</label>
+                        <div class="slider-container">
+                            <input type="range" id="posterize" min="2" max="256" value="256" class="slider">
+                            <span class="slider-value" id="posterizeValue">256</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="scanlines">scanlines</label>
+                        <div class="slider-container">
+                            <input type="range" id="scanlines" min="0" max="100" value="0" class="slider">
+                            <span class="slider-value" id="scanlinesValue">0%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label for="scanlineWidth">scanline_width</label>
+                        <div class="slider-container">
+                            <input type="range" id="scanlineWidth" min="1" max="100" value="10" class="slider">
+                            <span class="slider-value" id="scanlineWidthValue">1.0</span>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Actions -->
+                <section class="control-section">
+                    <h2 class="section-title">Actions</h2>
+                    
+                    <div class="slider-group">
+                        <label for="exportResolution">export_res</label>
+                        <div class="slider-container">
+                            <input type="range" id="exportResolution" min="1024" max="8192" step="512" value="4096" class="slider">
+                            <span class="slider-value" id="exportResolutionValue">4096px</span>
+                        </div>
+                    </div>
+                    
+                    <button id="playPauseButton" class="play-pause-button">⏸ pause</button>
+                    <button id="exportButton" class="export-button">
+                        <span>↓</span> export
+                    </button>
+                    <button id="resetButton" class="reset-button">
+                        <span>↻</span> reset
+                    </button>
+                    
+                    <div class="status-info">
+                        <span id="status">Prêt à générer un dégradé</span>
+                    </div>
+                </section>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="canvas-container">
+                <canvas id="canvas" style="display: none;"></canvas>
+                <canvas id="displayCanvas"></canvas>
+            </div>
+        </main>
+    </div>
+    <script src="sketch.js"></script>
+</body>
+</html>
+
